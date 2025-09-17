@@ -1,7 +1,15 @@
+import Section from '../components/common/Section'
+import ProjectCard from '../components/common/ProjectCard'
+import { projects } from '../content/projects'
+
 export default function Projects() {
   return (
-    <section id="projects" style={{ minHeight: '100vh', padding: '4rem 0' }}>
-      <h1>Projetos</h1>
-    </section>
+    <Section id="projects" title="Projetos">
+      <div className="projects-grid">
+        {projects.map((p) => (
+          <ProjectCard key={p.title} project={p} />
+        ))}
+      </div>
+    </Section>
   )
 }
