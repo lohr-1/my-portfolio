@@ -1,0 +1,130 @@
+/* ===========================
+   desktop.css (completo)
+   =========================== */
+
+/* ===== Paleta ===== */
+:root {
+  --bg: #33241d;          /* fundo */
+  --tile: #2b1f19;        /* bloco do ícone */
+  --tile-edge: #4a372f;   /* borda do bloco */
+  --ink: #e9dccf;         /* traço/ícone claro */
+  --muted: #e9dccf;       /* texto dos labels */
+  --accent: #d29b43;      /* amarelo */
+}
+
+/* Opcional: se você usar um wrapper do desktop, ele fica acima do wallpaper */
+.desktop-layer {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Dock esquerda (pastas, about.txt) ===== */
+.dock-left {
+  position: fixed;
+  left: 24px;
+  top: 84px;
+  display: grid;
+  gap: 28px;
+  z-index: 20;
+}
+
+/* ===== Dock direita (redes sociais) ===== */
+.dock-right {
+  position: fixed;
+  right: 24px;
+  top: 20%;
+  display: grid;
+  gap: 40px;
+  z-index: 20;
+}
+
+/* Links da dock direita sem underline e com cor do tema */
+.dock-right a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+/* ===== Ícones em tile (vibe pixel) ===== */
+.pixelicon {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-decoration: none;              /* sem underline nos labels */
+  color: var(--muted);
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
+}
+
+/* Reset para quando o tile for um botão */
+.pixelicon--button {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+}
+
+/* Bloco do tile */
+.pixelicon__tile {
+  display: grid;
+  place-items: center;
+  background: var(--tile);
+  border: 2px solid var(--tile-edge);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 #000 inset,
+    0 0 0 2px rgba(0,0,0,.05) inset,
+    0 8px 0 0 rgba(0,0,0,.25);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* Imagem/SVG dentro do tile */
+.pixelicon__img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  image-rendering: pixelated;         /* realça PNG/SVG pixelado */
+}
+
+/* Label embaixo do tile */
+.pixelicon__label {
+  font-size: 14px;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+/* Hover/active sutis no bloco */
+.pixelicon:hover .pixelicon__tile {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 #000 inset,
+    0 0 0 2px rgba(0,0,0,.05) inset,
+    0 12px 0 0 rgba(0,0,0,.23);
+}
+.pixelicon:active .pixelicon__tile {
+  transform: translateY(0);
+  box-shadow:
+    0 1px 0 #000 inset,
+    0 0 0 2px rgba(0,0,0,.05) inset,
+    0 6px 0 0 rgba(0,0,0,.28);
+}
+
+/* ===== Responsivo (evita sobreposição com o título no centro) ===== */
+@media (max-width: 900px) {
+  .dock-left {
+    left: 16px;
+    top: 72px;
+    gap: 20px;
+  }
+  .dock-right {
+    right: 16px;
+    top: auto;
+    bottom: 36px;
+    gap: 24px;
+  }
+  .pixelicon__label {
+    font-size: 12px;
+  }
+}
