@@ -1,0 +1,82 @@
+/* Fundo/overlay do “papel de parede” */
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;             /* fica atrás do desktop */
+  pointer-events: none;   /* não bloqueia cliques */
+}
+
+/* Posição do título para não colidir com os ícones da esquerda */
+:root{
+  /* ajuste fino se quiser (empurra mais para a direita e um pouco para baixo) */
+  --title-left: clamp(180px, 16vw, 320px);
+  --title-top:  clamp(64px, 10vh, 140px);
+}
+
+.wallpaper__title{
+  position: absolute;
+  left: var(--title-left);
+  top:  var(--title-top);
+  line-height: .9;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.35));
+}
+
+/* “aka” m/* Camada do “papel de parede” — sempre atrás do desktop */
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;             /* atrás do desktop */
+  pointer-events: none;   /* não bloqueia cliques nos ícones */
+}
+
+/* Título centralizado na tela */
+.wallpaper__title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: .9;
+  text-align: left; /* mantém aka em cima e lohr embaixo alinhados à esquerda */
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.35));
+}
+
+/* “aka” menor (linha de cima) */
+.wallpaper__aka{
+  font-weight: 800;
+  font-size: clamp(72px, 10vw, 160px);
+  color: #D29B43; /* amarelo */
+  letter-spacing: .02em;
+  opacity: .95;
+}
+
+/* “lohr” maior (linha de baixo) */
+.wallpaper__lohr{
+  margin-top: .06em;
+  font-weight: 800;
+  font-size: clamp(140px, 18vw, 320px);
+  color: #EFE4D7; /* claro */
+  letter-spacing: .01em;
+}
+
+/* (opcional) tamanhos um pouco menores em telas bem pequenas */
+@media (max-width: 480px){
+  .wallpaper__aka  { font-size: clamp(56px, 12vw, 120px); }
+  .wallpaper__lohr { font-size: clamp(120px, 22vw, 240px); }
+}
+enor e acima */
+.wallpaper__aka{
+  font-weight: 800;
+  font-size: clamp(72px, 10vw, 160px);
+  color: #D29B43; /* amarelo */
+  letter-spacing: .02em;
+  opacity: .95;
+}
+
+/* “lohr” maior e abaixo */
+.wallpaper__lohr{
+  margin-top: .06em;
+  font-weight: 800;
+  font-size: clamp(160px, 18vw, 320px);
+  color: #EFE4D7; /* claro */
+  letter-spacing: .01em;
+}

@@ -1,116 +1,28 @@
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* ====== RESET BÁSICO ====== */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; }
+
+/* ====== PALETA ======
+   - marrom (base, ~80%)
+   - amarelo (accent, ~20%)
+   - tinta (off-white para textos)
+*/
+:root{
+  --brown-900: #33241d;        /* base/backdrop */
+  --accent-500: #D29B43;       /* amarelo */
+  --ink: #F2E9DF;              /* texto principal */
+  --ink-dim: #E6DACD;          /* texto secundário */
 }
 
-.project-card {
-  background: #1c1c1c;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-}
-
-.project-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.project-content {
-  padding: 1rem;
-}
-
-.project-content h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #fff;
-}
-
-.project-content p {
-  margin: 0.5rem 0 1rem;
-  color: #ccc;
-  font-size: 0.95rem;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tag {
-  background: #8b1e3f; /* vinho */
-  color: white;
-  padding: 0.3rem 0.7rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
-}
-
-.project-card {
-  position: relative;
-  background: #1a1a1a;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-.project-header {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
-}
-
-.github-btn {
-  background: #24292e;
-  color: white;
-  font-size: 18px;
-  padding: 8px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.github-btn:hover {
-  background: #444c56;
-}
-
-.project-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.project-content {
-  padding: 16px;
-}
-
-.tags {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
-  background: #8b1c3f; /* tom vinho */
-  color: white;
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 8px;
+/* ====== FUNDO TEXTURIZADO ====== */
+body{
+  color: var(--ink);
+  background-color: var(--brown-900);
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  background-repeat: repeat;
+  background-size: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
