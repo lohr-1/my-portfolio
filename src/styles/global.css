@@ -13,6 +13,7 @@ body { margin: 0; }
   --accent-500: #D29B43;       /* amarelo */
   --ink: #F2E9DF;              /* texto principal */
   --ink-dim: #E6DACD;          /* texto secundário */
+  --app-font: 'Google Sans Code', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 /* ====== FUNDO TEXTURIZADO ====== */
@@ -24,5 +25,5 @@ body{
   background-size: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: var(--app-font);
 }
