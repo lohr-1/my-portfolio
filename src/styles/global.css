@@ -14,6 +14,9 @@ body { margin: 0; }
   --ink: #F2E9DF;              /* texto principal */
   --ink-dim: #E6DACD;          /* texto secundário */
   --app-font: 'Google Sans Code', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* Brand tint (soft green) — RGB and hex for convenience */
+  --brand-green: #6e9678;
+  --brand-green-rgb: 110, 150, 120;
 }
 
 /* ====== FUNDO TEXTURIZADO ====== */

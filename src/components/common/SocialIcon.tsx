@@ -6,7 +6,8 @@ import React from "react";
  */
 type Props =
   | { href: string; label: string; kind: "github"; size?: number }
-  | { href: string; label: string; kind?: undefined; src: string; size?: number };
+  | { href: string; label: string; kind?: undefined; src: string; size?: number }
+  | { href: string; label: string; fa: string; size?: number };
 
 export default function SocialIcon(props: Props) {
   const size = props.size ?? 88;
@@ -14,7 +15,13 @@ export default function SocialIcon(props: Props) {
   return (
     <a className="pixelicon" href={props.href} target="_blank" rel="noreferrer">
       <div className="pixelicon__tile" style={{ width: size, height: size }}>
-        {"src" in props ? (
+        {"fa" in props ? (
+          <i
+            className={props.fa}
+            aria-hidden
+            style={{ fontSize: Math.round(size * 0.52) }}
+          />
+        ) : "src" in props ? (
           <img
             className="pixelicon__img"
             src={props.src}

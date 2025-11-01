@@ -18,3 +18,14 @@
   position: relative;
   overflow: hidden;
 }
+
+/* soft brand tint overlay for the WebGL canvas */
+.dither-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(var(--brand-green-rgb), 0.10);
+  mix-blend-mode: overlay;
+  z-index: 2; /* sits above canvas but behind UI */
+}

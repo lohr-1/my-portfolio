@@ -103,7 +103,8 @@ enor e acima */
 .dither-background__tint{
   position: absolute;
   inset: 0;
-  background-color: rgba(110, 150, 120, 0.12); /* soft green tint */
+  /* use CSS variable for brand color (rgb) so alpha can be tuned here */
+  background-color: rgba(var(--brand-green-rgb), 0.12);
   mix-blend-mode: overlay;
   pointer-events: none;
 }
