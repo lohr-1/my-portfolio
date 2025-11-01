@@ -6,9 +6,7 @@ type Props =
 
 export default function IconTile({ label, size = 88, onOpen, ...props }: Props) {
   const handleClick = () => {
-    // Provide bounding rect so Desktop can position the window near the icon
     try {
-      // currentTarget is not available here; use element lookup by title
       const el = document.querySelector(`button[title="${label}"]`) as HTMLElement | null;
       const rect = el?.getBoundingClientRect();
       onOpen?.(rect ?? undefined);

@@ -114,3 +114,27 @@ enor e acima */
   50% { transform: translate3d(-2%, 1.5%, 0) scale(1.02); }
   100% { transform: translate3d(0,0,0) scale(1); }
 }
+
+/* Typewriter cursor + line helpers */
+.typewriter__line{
+  display: block;
+  white-space: pre; /* preserve spacing if needed */
+}
+
+.typewriter__cursor{
+  display: inline-block;
+  margin-left: 0.05em;
+  opacity: 0; /* hidden by default */
+  transform: translateY(-6%);
+  color: currentColor; /* inherit line color */
+}
+
+.typewriter__cursor.is-visible{
+  opacity: 1;
+  animation: typewriter-blink 1s steps(2, end) infinite;
+}
+
+@keyframes typewriter-blink{
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

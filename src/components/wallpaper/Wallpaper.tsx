@@ -1,4 +1,5 @@
 import Dither from "./Dither";
+import Typewriter from "./Typewriter";
 
 export default function Wallpaper() {
   return (
@@ -16,8 +17,7 @@ export default function Wallpaper() {
         />
       </div>
       <div className="wallpaper__title">
-        <div className="wallpaper__aka">aka</div>
-        <div className="wallpaper__lohr">lohr</div>
+        <Typewriter lines={["aka", "lohr"]} typingSpeed={55} startDelay={200} lineDelay={450} />
       </div>
     </div>
   );

@@ -102,17 +102,17 @@ export default function Desktop() {
   <div className="dock-right">
   <SocialIcon
     fa="fa-brands fa-github"
-    href="https://github.com/seu-usuario"
+    href="https://github.com/lohr-1"
     label="GitHub"
   />
   <SocialIcon
     fa="fa-brands fa-linkedin"
-    href="https://www.linkedin.com/in/seu-usuario/"
+    href="https://www.linkedin.com/in/felipe-lohr/"
     label="LinkedIn"
   />
   <SocialIcon
     fa="fa-brands fa-instagram"
-    href="https://www.instagram.com/seu-usuario/"
+    href="https://www.instagram.com/akalohr/"
     label="Instagram"
   />
 </div>

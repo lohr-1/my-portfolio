@@ -1,9 +1,6 @@
 import React from "react";
 
-/**
- * Use com src apontando para arquivos em /public (ex: "/linkedin-pixel.svg").
- * Para o GitHub, passe kind="github" sem src para usar o mark inline.
- */
+
 type Props =
   | { href: string; label: string; kind: "github"; size?: number }
   | { href: string; label: string; kind?: undefined; src: string; size?: number }
@@ -37,7 +34,6 @@ export default function SocialIcon(props: Props) {
             viewBox="0 0 16 16"
             aria-hidden
           >
-            {/* GitHub mark oficial (octicon) */}
             <path
               d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
                  0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13

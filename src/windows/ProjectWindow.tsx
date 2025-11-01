@@ -1,9 +1,8 @@
 type Project = { name: string; url: string };
 
 const PROJECTS: Project[] = [
-  { name: "Plataforma de E-commerce", url: "https://github.com/seu-usuario/ecommerce" },
-  { name: "App de Tarefas", url: "https://github.com/seu-usuario/todo-app" },
-  { name: "Painel Social", url: "https://github.com/seu-usuario/social-panel" },
+  { name: "Formulário de Registro", url: "https://github.com/lohr-1/registration-form" },
+  { name: "The Dog API", url: "https://github.com/lohr-1/thedogapi" },
 ];
 
 export default function ProjectsWindow() {
