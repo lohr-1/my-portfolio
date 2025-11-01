@@ -1,0 +1,31 @@
+.dither-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dither-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.faulty-terminal-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft brand tint overlay for the WebGL canvas */
+.dither-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(var(--brand-green-rgb), 0.10);
+  mix-blend-mode: overlay;
+  z-index: 2; /* sits above canvas but behind UI */
+}

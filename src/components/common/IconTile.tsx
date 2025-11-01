@@ -1,22 +1,25 @@
 import React from "react";
 
-type Props = {
-  label: string;
-  src: string;        // caminho no /public (ex: "/folder-pixel.svg")
-  size?: number;      // lado do tile
-  onOpen?: () => void; // abrir janela (duplo clique)
-};
+type Props =
+  | { label: string; fa: string; size?: number; onOpen?: (rect?: DOMRect) => void }
+  | { label: string; src: string; size?: number; onOpen?: (rect?: DOMRect) => void };
 
-export default function IconTile({ label, src, size = 88, onOpen }: Props) {
-  const handleDoubleClick = () => {
-    onOpen?.();
+export default function IconTile({ label, size = 88, onOpen, ...props }: Props) {
+  const handleClick = () => {
+    try {
+      const el = document.querySelector(`button[title="${label}"]`) as HTMLElement | null;
+      const rect = el?.getBoundingClientRect();
+      onOpen?.(rect ?? undefined);
+    } catch {
+      onOpen?.();
+    }
   };
 
   return (
     <button
       type="button"
       className="pixelicon pixelicon--button"
-      onDoubleClick={handleDoubleClick}
+      onClick={handleClick}
       title={label}
     >
       <div
@@ -24,13 +27,21 @@ export default function IconTile({ label, src, size = 88, onOpen }: Props) {
         style={{ width: size, height: size }}
         aria-hidden
       >
-        <img
-          className="pixelicon__img"
-          src={src}
-          width={Math.round(size * 0.55)}
-          height={Math.round(size * 0.55)}
-          alt=""
-        />
+        {"fa" in props ? (
+          <i
+            className={props.fa}
+            aria-hidden
+            style={{ fontSize: Math.round(size * 0.55) }}
+          />
+        ) : (
+          <img
+            className="pixelicon__img"
+            src={(props as { src: string }).src}
+            width={Math.round(size * 0.55)}
+            height={Math.round(size * 0.55)}
+            alt=""
+          />
+        )}
       </div>
       <span className="pixelicon__label">{label}</span>
     </button>

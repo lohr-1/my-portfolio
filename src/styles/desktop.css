@@ -18,6 +18,115 @@
   z-index: 2;
 }
 
+/* container para o desktop (usa-se .desktop no componente) */
+.desktop {
+  position: relative;
+  z-index: 2;
+}
+
+/* área onde as janelas abertas são renderizadas */
+.desktop__windows {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* por padrão não intercepta; janelas individuais ativarão */
+  z-index: 30;
+}
+
+/* Janela básica (título + corpo) */
+.win {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(920px, 86%);
+  max-height: 80vh;
+  background: #ffffff;
+  color: #111;
+  border-radius: 10px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.5);
+  overflow: hidden;
+  pointer-events: auto; /* permite interação com o conteúdo */
+  z-index: 31;
+}
+
+/* Old prompt-like open animation */
+.win--enter{
+  animation: prompt-open 520ms cubic-bezier(.2,.9,.2,1);
+}
+
+@keyframes prompt-open{
+  0% {
+    transform: scaleY(0.02) translate(-50%, -50%);
+    opacity: 0;
+    filter: blur(2px) saturate(120%);
+  }
+  60% {
+    transform: scaleY(1.06) translate(-50%, -50%);
+    opacity: 1;
+    filter: blur(0) saturate(120%);
+  }
+  100% {
+    transform: scaleY(1) translate(-50%, -50%);
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* Scanline / terminal overlay to give an old CRT/prompt feel */
+.win::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.03) 0px,
+    rgba(0,0,0,0.03) 1px,
+    rgba(255,255,255,0.01) 1px,
+    rgba(255,255,255,0.01) 2px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+}
+
+/* subtle glowing border to match matrix vibe */
+.win{
+  /* remove visible white stroke - rely on shadow and inner glow for separation */
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 0 40px rgba(var(--brand-green-rgb), 0.035) inset;
+  /* no border so there's no white stroke around rounded corners */
+  border: none;
+  background-clip: padding-box;
+}
+
+.win__titlebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 8px 12px;
+  background: var(--tile);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.win__title{ font-size: 16px; }
+
+.win__close{
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.win__body{
+  padding: 18px;
+  /* slightly off-white so it reads well against the tint/glow */
+  background: rgba(255,255,255,0.98);
+  color: #111;
+  overflow: auto;
+}
+
 /* ===== Dock esquerda (pastas, about.txt) ===== */
 .dock-left {
   position: fixed;
@@ -51,7 +160,8 @@
   gap: 10px;
   text-decoration: none;              /* sem underline nos labels */
   color: var(--muted);
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
+  /* lighter drop shadow to avoid appearing doubled with tile box-shadow */
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
 }
 
 /* Reset para quando o tile for um botão */
@@ -127,4 +237,92 @@
   .pixelicon__label {
     font-size: 12px;
   }
+}
+
+/* Mobile-specific layout and fullscreen windows */
+@media (max-width: 720px) {
+  /* move docks to bottom and increase hit area
+     - place folder icons on the bottom-left and socials on the bottom-right
+     so both sets are visible and reachable on mobile */
+  .dock-left {
+    /* put the folder dock near the top on mobile so it doesn't overlap the central title */
+    position: fixed !important;
+    left: 14px;
+    top: calc(18px + env(safe-area-inset-top, 0px));
+    bottom: auto;
+    transform: none;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    z-index: 110; /* above modal/backdrop so icons remain reachable */
+    align-items: center;
+    padding: 6px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 12px;
+    width: auto;
+    height: auto;
+    max-width: calc(100% - 28px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+
+  /* when a fullscreen modal is open, hide the docks for a cleaner fullscreen UX */
+  .modal-open .dock-left,
+  .modal-open .dock-right {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+
+  .dock-right {
+    position: fixed !important;
+    right: 14px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    display: flex;
+    gap: 14px;
+    z-index: 90;
+    align-items: center;
+    padding: 6px;
+    background: rgba(0,0,0,0.45);
+    border-radius: 12px;
+  }
+
+  .pixelicon__tile { border-radius: 12px; }
+  .pixelicon__label { display: none; }
+  .pixelicon__tile { width: 72px; height: 72px; }
+
+  /* fullscreen window style for mobile */
+  .win--fullscreen {
+    position: fixed !important;
+    left: 8px !important;
+    top: 8px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    border-radius: 10px;
+    z-index: 60 !important;
+    overflow: hidden;
+  }
+
+  .win--fullscreen .win__titlebar {
+    padding: 10px 14px;
+    font-size: 18px;
+  }
+
+  .win--fullscreen .win__body {
+    padding: 14px;
+    height: calc(100% - 54px);
+    overflow: auto;
+  }
+}
+
+/* Backdrop used for fullscreen modal windows on mobile */
+.win-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 50;
 }
